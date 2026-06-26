@@ -1,0 +1,61 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile with level, XP, theme preferences, and Google Calendar sync state.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "username": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "xp": { "type": "integer" },
+        "level": { "type": "integer" },
+        "theme": { "type": "string" },
+        "googleCalendarConnected": { "type": "boolean" }
+      },
+      "required": ["name", "email", "username", "xp", "level", "theme"]
+    },
+    "Task": {
+      "title": "Task",
+      "description": "Tactical task with deadline, status, and estimated effort.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "deadline": { "type": "string", "format": "date" },
+        "priority": { "type": "string", "enum": ["high", "medium", "low"] },
+        "estimatedHours": { "type": "number" },
+        "completedHours": { "type": "number" },
+        "completed": { "type": "boolean" },
+        "riskScore": { "type": "integer" }
+      },
+      "required": ["name", "deadline", "priority", "estimatedHours", "completedHours", "completed"]
+    },
+    "Habit": {
+      "title": "Habit",
+      "description": "Gamified habit tracker for a user.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "streak": { "type": "integer" },
+        "history": { "type": "object" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "streak", "history", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Root collection storing core shinobi user metadata."
+    },
+    "/users/{userId}/tasks/{taskId}": {
+      "schema": "Task",
+      "description": "Subcollection storing tasks specific to each user."
+    },
+    "/users/{userId}/habits/{habitId}": {
+      "schema": "Habit",
+      "description": "Subcollection storing habits specific to each user."
+    }
+  }
+}

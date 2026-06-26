@@ -1,0 +1,23 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Users Profile Collection
+    match /users/{userId} {
+      // Allow reading user documents to check username availability or email lookups during login/signup
+      allow read: if true;
+      
+      // Allow writing to your own profile document
+      allow create, update: if request.auth != null && request.auth.uid == userId;
+      allow delete: if request.auth != null && request.auth.uid == userId;
+
+      // Subcollections are strictly private to the authenticated owner
+      match /tasks/{taskId} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+      
+      match /habits/{habitId} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+    }
+  }
+}

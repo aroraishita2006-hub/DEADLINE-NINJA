@@ -1,0 +1,6 @@
+{
+  "name": "Deadline Ninja",
+  "description": "Don't miss deadlines. Beat them. An AI-powered productivity companion that predicts risks, prioritizes tasks, and creates action plans.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
