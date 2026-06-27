@@ -54,4 +54,4 @@ https://ai.studio/apps/efac5d1f-3a20-4a39-bfa3-71f05499a95f
 https://github.com/aroraishita2006-hub/DEADLINE-NINJA
 
 ---
-Built for The Big Code 2026 Hackathon.
+
